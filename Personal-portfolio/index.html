@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <nav>
+    <a href="#" onclick="showSection('resume')">Resume</a>
+    <a href="#" onclick="showSection('home')">Home</a>
+    <a href="#" onclick="showSection('portfolio')">Portfolio</a>
+  </nav>
+
+  <!-- HOME -->
+  <section id="home" class="active">
+    <h1>MY PERSONAL PAGE</h1>
+    <h1>Website Project</h1>
+
+    <div class="home-wrap">
+      <!-- LEFT -->
+      <div class="home-left">
+        <h1>Hi, I’m Carl</h1>
+        <p class="home-intro">
+          IT student majoring in Web Technology.<br>
+          Curre  <br><br>
+        </p>
+
+        <div class="home-grid">
+          <div class="home-card">
+            <h3>Quick Facts</h3>
+            <ul>
+              <li>IT (Web Tech)</li>
+              <li>Baguio City</li>
+              <li>Front-end focused</li>
+            </ul>
+          </div>
+
+          <div class="home-card">
+            <h3>Interests</h3>
+            <ul>
+              <li>UI / UX</li>
+              <li>Trading</li>
+              <li>Web Techs</li>
+            </ul>
+          </div>
+
+          <div class="home-card">
+            <h3>Hobbies</h3>
+            <ul>
+              <li>Lifting Weights</li>
+              <li>Music</li>
+              <li>Having Fun</li>
+            </ul>
+          </div>
+
+          <div class="home-card">
+            <h3>Fun Facts</h3>
+            <ul>
+              <li>Doing a lot of side quests</li>
+              <li>Always curious on things</li>
+              <li>Likes chaotic partying and sometimes likes calm vibes</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT -->
+      <div class="home-right">
+        <div class="home-photo">
+          <img src="paldortz.jpg" alt="Carl photo">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESUME -->
+  <section id="resume">
+    <h1>Resume</h1>
+    <small>Coming soon — I’ll add my resume here.</small>
+  </section>
+
+  <!-- PORTFOLIO -->
+  <section id="portfolio">
+    <h1>My Portfolio</h1>
+
+    <div class="project-gallery">
+      <img class="project-thumb" src="JavaReceipt.jpg" alt="Java Receipt" data-title="Java Receipt" data-desc="Preview image of a Receipt made in Java.">
+      <img class="project-thumb" src="ArrayCalculator.jpg" alt="Array Calculator" data-title="Array Calculator" data-desc="Preview image of Array Calculator project.">
+      <img class="project-thumb" src="AVL TREES.jpg" alt="AVL Trees" data-title="AVL Trees" data-desc="Preview image of AVL Trees project.">
+      <img class="project-thumb" src="RENDERED.jpeg" alt="Rendered Scene" data-title="Rendered Scene" data-desc="Preview image of rendered scene project.">
+      <img class="project-thumb" src="draft - Copy.jpeg" alt="Draft Project" data-title="Draft Project" data-desc="Preview image of draft project.">
+      <img class="project-thumb" src="traversals.jpg" alt="Traversals" data-title="Traversals" data-desc="Preview image of traversals project.">
+      <img class="project-thumb" src="WolfRPGJAVA.jpg" alt="Wolf RPG Java" data-title="Wolf RPG Java" data-desc="Preview image of Wolf RPG Java project.">
+      <img class="project-thumb" src="TributePage.jpg" alt="Tribute Page" data title="Tribute Page" data-desc="Preview image of Tribute Page(Steve Jobs).">
+      <img class="project-thumb" src="ProductLanding.jpg" alt="Product Landing" data-title="Product Landing" data-desc="Preview image of Product Landing.">
+      <img class="project-thumb" src="SurveyForm.jpg" alt="Survey Form" data-title="Survey Form" data-desc="Preview image of Survey Form.">
+      <img class="project-thumb" src="TechDocument.jpg" alt="Technical Document" data-title="Technical Document" data-desc="Preview image of VScode Technical Document.">
+    </div>
+  </section>
+
+  <!-- MODAL (in-page preview) -->
+  <div id="projectModal" class="modal" aria-hidden="true">
+    <div class="modal-content" role="dialog" aria-modal="true">
+      <button class="modal-close" aria-label="Close preview">&times;</button>
+
+      <div class="modal-left">
+        <img id="modalImg" src="" alt="Project preview">
+      </div>
+
+      <div class="modal-right">
+        <h2 id="modalTitle"></h2>
+        <p id="modalDesc"></p>
+      </div>
+    </div>
+  </div>
+
+  <footer>&copy; 2024 My Portfolio | Designed by Carl Aquino</footer>
+
+  <script>
+    function showSection(sectionId) {
+      const sections = document.querySelectorAll("section");
+      sections.forEach(section => section.classList.remove("active"));
+      const activeSection = document.getElementById(sectionId);
+      if (activeSection) activeSection.classList.add("active");
+    }
+
+    // ✅ in-page preview modal
+    document.addEventListener("DOMContentLoaded", () => {
+      const modal = document.getElementById("projectModal");
+      const modalImg = document.getElementById("modalImg");
+      const modalTitle = document.getElementById("modalTitle");
+      const modalDesc = document.getElementById("modalDesc");
+      const closeBtn = document.querySelector(".modal-close");
+
+      function openModal(imgEl) {
+        modalImg.src = imgEl.src;
+        modalTitle.textContent = imgEl.dataset.title || imgEl.alt || "Project Preview";
+        modalDesc.textContent = imgEl.dataset.desc || "";
+        modal.classList.add("show");
+        modal.setAttribute("aria-hidden", "false");
+      }
+
+      function closeModal() {
+        modal.classList.remove("show");
+        modal.setAttribute("aria-hidden", "true");
+        modalImg.src = "";
+      }
+
+      document.querySelectorAll(".project-thumb").forEach(img => {
+        img.addEventListener("click", () => openModal(img));
+      });
+
+      closeBtn.addEventListener("click", closeModal);
+
+      // click outside to close
+      modal.addEventListener("click", (e) => {
+        if (e.target === modal) closeModal();
+      });
+
+      // ESC to close
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeModal();
+      });
+    });
+  </script>
+
+</body>
+</html>
