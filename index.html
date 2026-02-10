@@ -15,13 +15,13 @@
     <a href="#" onclick="showSection('portfolio')">Portfolio</a>
   </nav>
 
-  <!-- HOME -->
+  
   <section id="home" class="active">
     <h1>MY PERSONAL PAGE</h1>
     <h1>Website Project</h1>
 
     <div class="home-wrap">
-      <!-- LEFT -->
+      
       <div class="home-left">
         <h1>Hi, I’m Carl</h1>
         <p class="home-intro">
@@ -68,7 +68,7 @@
         </div>
       </div>
 
-      <!-- RIGHT -->
+      
       <div class="home-right">
         <div class="home-photo">
           <img src="images/paldortz.jpg" alt="Carl photo">
@@ -77,11 +77,11 @@
     </div>
   </section>
 
-  <!-- RESUME -->
+  
   <section id="resume">
   <div class="resume-wrap">
 
-    <!-- LEFT SIDEBAR -->
+    
     <aside class="resume-left">
       <div class="resume-avatar">
         <img src="images/C.jpg" alt="Carl">
@@ -111,7 +111,7 @@
       </div>
     </aside>
 
-    <!-- RIGHT CONTENT -->
+    
     <div class="resume-right">
 
       <div class="resume-section">
@@ -158,7 +158,7 @@
   </div>
 </section>
 
-<!-- PORTFOLIO -->
+
 <section id="portfolio">
   <h1>My Portfolio</h1>
 
@@ -178,7 +178,7 @@
 </section>
   </section>
 
-  <!-- MODAL (in-page preview) -->
+
   <div id="projectModal" class="modal" aria-hidden="true">
     <div class="modal-content" role="dialog" aria-modal="true">
       <button class="modal-close" aria-label="Close preview">&times;</button>
@@ -204,7 +204,7 @@
       if (activeSection) activeSection.classList.add("active");
     }
 
-    // ✅ in-page preview modal
+
     document.addEventListener("DOMContentLoaded", () => {
       const modal = document.getElementById("projectModal");
       const modalImg = document.getElementById("modalImg");
@@ -232,12 +232,12 @@
 
       closeBtn.addEventListener("click", closeModal);
 
-      // click outside to close
+   
       modal.addEventListener("click", (e) => {
         if (e.target === modal) closeModal();
       });
 
-      // ESC to close
+     
       document.addEventListener("keydown", (e) => {
         if (e.key === "Escape") closeModal();
       });
